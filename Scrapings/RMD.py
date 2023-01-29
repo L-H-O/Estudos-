@@ -4,7 +4,7 @@ Created on Sat Jan 28 10:02:24 2023
 
 @author: lider
 """
-# Setup -> importação das bibliotecas necessárias 
+# Setup -> importing the necessary packages 
 
 import requests as req
 import zipfile as zf
@@ -41,19 +41,19 @@ def RMD(sheet_name = None):
 
     r = req.get(url2, verify = False).content
     
-    # Processamento e extração
+    # Processing and extraction
 
-    anexo = zf.ZipFile(BytesIO(r))
+    zipped = zf.ZipFile(BytesIO(r))
     
-    fname = [fname.filename for fname in anexo.infolist()][0]
+    fname = zipped.infolist()[0].filename
     
-    anexo.extractall(path = home)
+    zipped.extractall(path = home)
     
-    # Criação do DF
+    # Creating the DataFrame
     
     df = pd.read_excel(fname, sheet_name = str(sheet_name), index_col = 0)
     
-    # Remoção do arquivo excel bruto
+    # Deleting the raw excel file
     
     os.remove(fname)
     
