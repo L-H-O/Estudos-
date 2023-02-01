@@ -27,7 +27,7 @@ def Wages():
 
     soup = BeautifulSoup(link.content, 'html.parser')
 
-    link1 = soup.find_all('li', class_ ="item-6107")[0].find_all('a')[0]['href']
+    link1 = soup.find_all('ul', class_ ="n5")[0].find_all('a')[2]['href']
 
     finallink = aux + link1
     
